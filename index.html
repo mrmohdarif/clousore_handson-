@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clousure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>/* clousure questino 1 */</h2>
+<pre>
+    function counter(){
+        var counter = 0;
+    
+        function IncreaseCounter() {
+            return counter += 1;
+        };
+    
+        return IncreaseCounter;
+    }
+    var counter = counter();
+    alert(counter());
+    alert(counter());
+    alert(counter());
+    alert(counter()); 
+</pre>
+<p>Output=> 1,2,3,4</p>
+<p>EXP:-IncreaseCounter() function increse the value by 1 and  return IncreaseCounter so counter is 1 and
+    every time value are increseses .we are calling function 4 time so values are 1,2,3,4
+</p>
+<h2>//clousure question 2</h2>
+<pre>let count = 0;
+    (function () {
+      if (count === 0) {
+        let count = 1;
+        console.log(count); 
+      }
+      console.log(count); 
+    })();</pre>
+<p>Output:- 1,0</p>
+
+<p>EXP:- In this function immediate function expression inner function take count=1 and print value 1 and outer function take global variable and value is 0</p>
+<h2>//closure question 3</h2>
+<pre>
+    for (var i = 0; i < 3; i++) {
+        setTimeout(function log() {
+          console.log(i);
+        }, 1000);
+      }
+</pre>
+<p>Output:-3,3,3</p>
+<p>EXP:-In this function we are using Asynchoronus function setTimeout.it is waiting 1sec then print value after ending the loop condition i value is 3 so it will print 3,3,3 because setTimeout call three time</p>
+<h2>/*4.Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.*/</h2>
+<pre>
+    function length(l){
+        function width(w){
+            return l*w;
+        }
+        return width(10)
+    }
+    let Area_of_rectangle=length(10)
+console.log("Area_of_rectangle",Area_of_rectangle);
+</pre>
+<p>Output=>Area_of_rectangle 100</p>
+<p>EXP:- inner function returning return width(10)  the value to main function and after calling main functin it return value 100; </p>
+<h2>/* 5.Take a variable in outer function and create an inner function to increase the counter every time it is called*/</h2>
+<pre>
+    function outer()
+{
+    let counter=0;
+    function inner(){
+     return counter+=1;
+    }
+    return inner;
+}
+let counter=outer()
+console.log(counter());
+console.log(counter());
+console.log(counter());
+</pre>
+<p>Output:-1,2,3</p>
+<p>EXP:- inner function return the value increment by 1 and inner function will return  to main function  everytime main function will call it return increase values</p>
+<h2>/* closure question 6*/</h2>
+<pre>
+    var a = 12;
+(function () {
+  alert(a);
+})();
+</pre>
+<p>Output:-12</p>
+<p>EXP:- it is a iife function so it will print 12 in alert box </p>
+<h2>/* closure question 7*/</h2>
+<pre>
+    var a = 10;
+    var x = (function () {
+      var a = 12;
+      return function () {
+        alert(a);
+      };
+    })();
+    x();
+</pre>
+<p>Output:-12</p>
+<h2>/* closure question 8*/</h2>
+<pre>
+    var globalVar = "xyz";
+(function outerFunc(outerArg) {
+    var outerVar = 'a';
+    
+    (function innerFunc(innerArg) {
+    var innerVar = 'b';
+    
+    console.log(
+        "outerArg = " + outerArg + "\n" +
+        "innerArg = " + innerArg + "\n" +
+        "outerVar = " + outerVar + "\n" +
+        "innerVar = " + innerVar + "\n" +
+        "globalVar = " + globalVar);
+    
+    })(456);
+})(123);
+</pre>
+<pre> Output:-
+outerArg = 123
+innerArg = 456
+outerVar = a
+innerVar = b
+globalVar = xyz
+</pre>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
